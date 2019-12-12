@@ -16,6 +16,7 @@ fn main() {
     }
 
     fahrenheit_celcius_converter('F', 200);
+    five();
 }
 
 fn check_number(x: u32, y: u32) {
@@ -58,4 +59,8 @@ fn fahrenheit_celcius_converter(final_unit: char, input: u32) {
         input * 9 / 5 + 32
     };
     println!("{}", value);
+}
+
+fn five() -> u32 {
+    5
 }
