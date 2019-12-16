@@ -130,5 +130,5 @@ fn first_word_new(s: &String) -> &str {
         }
     }
 
-    &s[..]
+    &s[..];
 }
