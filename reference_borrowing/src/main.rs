@@ -12,6 +12,44 @@ fn main() {
 
     let mut s = String::from("Hello");
     change(&mut s);
+
+    let s4 = String::from("Hello friend");
+
+    let num: usize = first_word(s4);
+
+    println!("{}", num);
+
+    // String slice
+    // A string slice is a reference to a part of a String, and it looks like this:
+
+    let s5 = String::from("Hello world");
+
+    let hello = &s[0..5];
+    let world = &s[6..11];
+
+    // With Rust's range syntax, if we want to start at zero, you can drop the value before the two periods.
+
+    let s6 = String::from("testing here");
+
+    let slice_one = &s[0..8];
+    let slice_two = &s[..8];
+
+    // Same token, if slice includes the last byte of Strings, you can drop the trailing number
+    let len = s6.len();
+    let slice_three = &s[3..len];
+    let slice_four = &s[3..];
+
+    // When both are dropped you are slicing the entire String
+    let slice_five = &s[..];
+
+    let s7 = first_word_new(&s6).len();
+    println!("{}", s7);
+
+    let a = [1, 2, 3, 4, 5];
+    let a_slice = &a[1..3];
+
+    // Not working here.
+    println!("{}", a);
 }
 
 fn calculate_length(s: String) -> (String, usize) {
@@ -68,3 +106,29 @@ fn change(some_string: &mut String) {
 
 //     &s
 // }
+
+// the problem with this function is that the num value is not connected to the sate of s4 at all. num will always contains the number 5.
+
+fn first_word(s: String) -> usize {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return i;
+        }
+    }
+
+    s.len()
+}
+
+fn first_word_new(s: &String) -> &str {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[0..i];
+        }
+    }
+
+    &s[..]
+}
